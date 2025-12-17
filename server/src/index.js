@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from 'mongoose'
 import { UserModel } from './models/Users.js';
 import dotenv from 'dotenv';
+import { UserRouter } from './routes/auth.js';
 
 dotenv.config();
 
@@ -12,9 +13,10 @@ app.use(cors());
 
 
 mongoose.connect(process.env.MONGO_URI).then(() => {
-    "mongodb connected"
+   console.log ("mongodb connected")
 }).catch((err) => console.error("Connection error:", err));
 
+app.use("/users", UserRouter)
 
 
 
