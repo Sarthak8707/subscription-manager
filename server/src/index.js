@@ -4,6 +4,8 @@ import mongoose from 'mongoose'
 import { UserModel } from './models/Users.js';
 import dotenv from 'dotenv';
 import { UserRouter } from './routes/auth.js';
+import { SubscriptionRouter } from './routes/subscriptions.js';
+import { SubscriptionModel } from './models/Subscriptions.js';
 
 dotenv.config();
 
@@ -17,6 +19,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 }).catch((err) => console.error("Connection error:", err));
 
 app.use("/users", UserRouter)
+app.use("/subscriptions", SubscriptionRouter)
 
 
 
