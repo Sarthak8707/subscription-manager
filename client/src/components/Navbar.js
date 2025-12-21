@@ -12,8 +12,10 @@ const Navbar = () => {
   return (
     <div>
         <Link to="/">Home</Link>
+        <Link to="/create-sub">Create Subscription</Link>
         {"    "}
         { cookies.access_token ?  <button onClick={signOut}>Sign Out</button> : <Link to="/auth">Sign In</Link>}
+
     </div>
   )
 }
