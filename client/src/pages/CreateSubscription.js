@@ -31,10 +31,10 @@ const CreateSubscription = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setSubscription({
-      ...subscription,
+    setSubscription(prev => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   const sendSub = async (e) => {
@@ -42,12 +42,18 @@ const CreateSubscription = () => {
 
     console.log("fired");
     const uid = window.localStorage.userID;
-    subscription.createdBy = uid;
-    console.log(subscription);
+    
+    const finalsub = {
+        ...subscription, 
+        cost: Number(subscription.cost),
+        dateOfRenewal: Number(subscription.dateOfRenewal),
+        createdBy: uid
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:3001/subscriptions/",
-        { subscription: subscription }
+        { subscription: finalsub }
       );
       console.log(response);
     } catch (error) {
