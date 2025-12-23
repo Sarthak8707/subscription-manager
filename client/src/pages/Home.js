@@ -14,7 +14,7 @@ const Home = () => {
             setSubs(response.data);
         }
         fetchSubs();
-    }, [])
+    }, [userID])
 
   return (
     <div>
